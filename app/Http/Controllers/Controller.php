@@ -32,16 +32,16 @@ class Controller extends BaseController
     }
 
 
-    function pkcs5_unpad($text) {
-        $pad = ord($text{strlen($text)-1});
-        if ($pad > strlen($text)) {
-            return false;
-        }
-        if (strspn($text, chr($pad), strlen($text) - $pad) != $pad) {
-            return false;
-        }
-        return substr($text, 0, -1 * $pad);
-    }
+//    function pkcs5_unpad($text) {
+//        $pad = ord($text{strlen($text)-1});
+//        if ($pad > strlen($text)) {
+//            return false;
+//        }
+//        if (strspn($text, chr($pad), strlen($text) - $pad) != $pad) {
+//            return false;
+//        }
+//        return substr($text, 0, -1 * $pad);
+//    }
 
     //AES Encryption Method Starts
     public function encryptAES($str,$key) {

@@ -257,7 +257,6 @@ class ProductController extends Controller
             } else {
                 $related[$i]['favorite'] = false;
             }
-			$related[$i]['views'] =  Product_view::where('product_id',$related[$i]['id'])->count();
         }
         $views = Product_view::where('product_id', $data->id)->count();
         $response = APIHelpers::createApiResponse(false, 200, '', '', array('product' => $data,
@@ -515,7 +514,7 @@ class ProductController extends Controller
                     }
                 }
             }
-            
+
             $response = APIHelpers::createApiResponse(false, 200, '', '', $ad_data, $request->lang);
             return response()->json($response, 200);
         }
@@ -546,7 +545,7 @@ class ProductController extends Controller
                 $image_id = $imagereturned['public_id'];
                 $image_format = $imagereturned['format'];
                 $image_new_name = $image_id . '.' . $image_format;
-                
+
                 $product->main_image = $image_new_name;
                 $product->save();
 

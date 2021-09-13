@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
 //    protected $dates = ['publication_date'];
+    protected $appends = array('views');
     protected $fillable = ['title','description', 'price','category_id','sub_category_id','sub_category_two_id','expire_special_date',
         'sub_category_three_id','sub_category_four_id','user_id', 'type','publication_date','re_post_date','is_special',
         'views', 'offer', 'status', 'expiry_date','main_image','expire_pin_date','created_at','plan_id','publish','sub_category_five_id','deleted'];
@@ -54,5 +55,11 @@ class Product extends Model
 	public function getCreatedAtAttribute($date)
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d g:i a');
+    }
+
+    public function getViewsAttribute()
+    {
+        $product = Product_view::where('product_id',$this->id)->get()->count();
+        return $product;
     }
 }
