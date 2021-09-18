@@ -1035,7 +1035,7 @@ class ProductController extends Controller
             ->where('publish', 'Y')
             ->where('deleted', 0)
             ->where('user_id', auth()->user()->id)
-            ->select('id', 'title', 'price', 'main_image', 'pin', 'user_id')
+            ->select('id', 'title', 'price', 'main_image', 'pin', 'user_id','publication_date as created_at')
             ->orderBy('pin', 'desc')
             ->orderBy('created_at', 'desc')
             ->get();
