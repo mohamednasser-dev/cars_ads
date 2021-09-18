@@ -420,7 +420,7 @@ class ProductController extends Controller
     public function getFeatureOffers(Request $request)
     {
         $products = Product::where('is_special', '1')
-            ->select('id', 'title', 'price', 'main_image as image')
+            ->select('id', 'title', 'price', 'main_image','publication_date as created_at')
             ->orderBy('publication_date', 'DESC')
             ->where('status', 1)
             ->where('deleted', 0)
@@ -995,7 +995,7 @@ class ProductController extends Controller
         $ads = Product::where('status', 2)
             ->where('deleted', 0)
             ->where('user_id', auth()->user()->id)
-            ->select('id', 'title', 'price', 'main_image')
+            ->select('id', 'title', 'price', 'main_image', 'pin', 'publication_date','created_at')
             ->get();
         if (count($ads) == 0) {
             $response = APIHelpers::createApiResponse(false, 200, 'no ended ads yet !', ' !لا يوجد اعلانات منتهيه حتى الان', null, $request->lang);
@@ -1012,7 +1012,7 @@ class ProductController extends Controller
             ->where('publish', 'Y')
             ->where('deleted', 0)
             ->where('user_id', auth()->user()->id)
-            ->select('id', 'title', 'price', 'main_image', 'views', 'pin', 'publication_date')
+            ->select('id', 'title', 'price', 'main_image', 'pin', 'publication_date','created_at')
             ->orderBy('pin', 'desc')
             ->orderBy('created_at', 'desc')
             ->simplePaginate(12)
