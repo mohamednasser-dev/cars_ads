@@ -362,7 +362,7 @@ class ProductController extends Controller
             ->where('deleted', 0)
             ->where('status', 1)
             ->where('publish', 'Y')
-            ->select('id', 'title', 'price', 'type', 'main_image', 'pin', 'publication_date as date')
+            ->select('id', 'title', 'price', 'type', 'main_image', 'pin', 'publication_date as created_at')
             ->Where(function ($query) use ($search) {
                 $query->Where('title', 'like', '%' . $search . '%');
             })
@@ -371,9 +371,9 @@ class ProductController extends Controller
             ->simplePaginate(12);
 //        dd($products);
         for ($i = 0; $i < count($products); $i++) {
-            $date = date_create($products[$i]['date']);
-            $products[$i]['date'] = date_format($date, 'd M Y');
-            $products[$i]['image'] = $products[$i]['main_image'];
+//            $date = date_create($products[$i]['date']);
+//            $products[$i]['date'] = date_format($date, 'd M Y');
+            $products[$i]['main_image'] = $products[$i]['main_image'];
             $user = auth()->user();
             if ($user) {
                 $favorite = Favorite::where('user_id', $user->id)->where('product_id', $products[$i]['id'])->first();
