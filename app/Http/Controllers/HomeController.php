@@ -211,7 +211,7 @@ class HomeController extends Controller
                     $ReqUdf5="udf5=Test5";
                     $param=$ReqTranportalId."&".$ReqTranportalPassword."&".$ReqAction."&".$ReqLangid."&".$ReqCurrency."&".$ReqAmount."&".$ReqResponseUrl."&".$ReqErrorUrl."&".$ReqTrackId."&".$ReqUdf1."&".$ReqUdf2."&".$ReqUdf3."&".$ReqUdf4."&".$ReqUdf5;
                     $param=$this->encryptAES($param,$termResourceKey)."&tranportalId=".$TranportalId."&responseURL=".$ResponseUrl."&errorURL=".$ErrorUrl;
-                    $data['packages'][$i]['url'] = "https://kpaytest.com.kw/kpg/PaymentHTTP.htm?param=paymentInit" . "&trandata=".$param;
+                    $data['packages'][$i]['url'] = "https://kpay.com.kw/kpg/PaymentHTTP.htm?param=paymentInit" . "&trandata=".$param;
                 }
             }
         }
